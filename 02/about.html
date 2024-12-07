@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/icon" href="icon/favicon.ico">
+</head>
+
+<body>
+    <header>
+        <h1>Sobre o Site</h1>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html" aria-label="Ir para página inicial">Home</a></li><br>
+                <li><a href="mostrar_noticias.php" aria-label="Página de Notícias">Notícias</a></li><br>
+                <li><a href="about.html" aria-label="Ir para informações sobre o site">Sobre</a></li><br>
+            </ul>
+        </nav>
+    </header>
+    <main class="principal">
+        <section class="info-text">
+            <h2>Informações do Site</h2><br>
+            <p>Este site foi criado para demonstrar o uso de HTML, CSS, JavaScript, PHP e a gravação, recuperação, leitura e exclusão de dados em Mysql. Também está sendo utilizado o servidor HTTP.</p><br>
+            <ul>
+                <li>Autores:</li>
+                <li>Patrick Roberto Mendes da Silva</li>
+                <li>Carlos Eduardo Silva Cabreira</li>
+                <li>Vlademir Segan Faria</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Meu Site</p>
+    </footer>
+    <script>
+        // Faz a requisição AJAX para verificar o status de login
+        fetch('verificar_login.php')
+            .then(response => response.json())
+            .then(data => {
+                const menu = document.getElementById('menu');
+                if (data.logado) {
+                    // Se estiver logado, adiciona o nome do usuário e o botão "Sair"
+                    menu.innerHTML += `<li><p>Olá, ${data.usuario}!</p></li>`;
+                    menu.innerHTML += `<li><a href="inserirNoticia.php" aria-label="Inserir nova notícia">Inserir nova notícia</a></li><br>`;
+                    menu.innerHTML += `<li><a href='logout.php' aria-label="Sair">Sair</a></li><br>`;
+                    menu.innerHTML += `<li><a href="redefinir_senha.php" aria-label="Redefinir Senha">Redefinir Senha</a></li><br>`;
+                } else {
+                    // Se não estiver logado, adiciona os links de login e cadastro
+                    menu.innerHTML += `<li><a href='fazerLogin.php' aria-label='Fazer Login'>Login</a></li><br>`;
+                    menu.innerHTML += `<li><a href='criarConta.php' aria-label='Criar nova conta'>Criar nova conta</a></li><br>`;
+                }
+            });
+    </script>
+</body>
+
+</html>
